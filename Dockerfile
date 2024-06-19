@@ -24,8 +24,12 @@ COPY --from=builder /usr/src/target/release/hxn .
 RUN apt update
 RUN apt -y install chromium
 
+# Webgl
+RUN DEBIAN_FRONTEND=noninteractive apt install -y \
+  xorg xserver-xorg xvfb libx11-dev libxext-dev
+
 RUN ln -s /usr/bin/chromium /usr/bin/chrome
 RUN mkdir /app/hxnshots
 
 USER 1000
-ENTRYPOINT ["/app/hxn"]
+ENTRYPOINT ["xvfb-run", "/app/hxn"]

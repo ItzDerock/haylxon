@@ -89,6 +89,19 @@ pub async fn take_screenshot(
         ScreenshotType::Webg => CaptureScreenshotFormat::Webp,
     };
     let page = browser.new_page(parsed_url.clone()).await?;
+    
+    page.evaluate("
+        setTimeout(() => {
+            // window.bluemap.mapViewer.superSampling = 2;
+            // window.bluemap.saveUserSettings(); 
+            // window.bluemap.mapViewer.redraw();
+
+            window.bluemap.markerFileManager.dispose();
+            window.bluemap.playerMarkerManager.dispose();
+            document.querySelector('#app').style.opacity = 0;
+        }, 5000);
+    ").await?;
+    
     tokio::time::sleep(Duration::from_secs(delay)).await;
     page.save_screenshot(
         ScreenshotParams::builder()

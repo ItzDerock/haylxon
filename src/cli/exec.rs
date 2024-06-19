@@ -51,6 +51,10 @@ pub async fn run(
                 is_landscape: false,
                 has_touch: false,
             })
+            // https://github.com/microsoft/playwright/issues/18810
+            .arg("--use-gl=egl")
+            .arg("--ignore-gpu-blocklist")
+            .arg("--use-gl=angle")
             .build()
             .map_err(anyhow::Error::msg)?,
     )

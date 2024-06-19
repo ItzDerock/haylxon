@@ -16,6 +16,11 @@ Built from the ground up for ease of use, performance, beautiful ui and portabil
  
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)
 
+# About this fork
+
+This fork contains code designed towards BlueMap.  
+- WebGL support
+- Custom script that runs on page load
 
 ## Table of contents 📔
 
